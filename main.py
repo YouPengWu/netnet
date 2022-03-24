@@ -21,23 +21,23 @@ def load_latest_report(sym):
 
 
 def read_stocks():
-    with open('./stock.txt') as f:
+    with open("./stock.txt", mode="r", encoding="utf-8") as f:
         return list(filter(lambda x: x, [line.strip() for line in f.readlines()]))
 
 
 def do_all():
     for stock in read_stocks():
-        f = open("result.txt","a")
         df = load_latest_report(stock)[1]
         interested = {
             '股本合計': '股本合計',
             '流動資產合計': '流動資產合計',
             '負債總額': '負債總[計額]',
         }
-        f.write(f"=== {stock} ===\n")
+        with open("result.txt", mode="a", encoding="utf-8") as f:
+            f.write(f"=== {stock} ===\n")
         for entry, regex in interested.items():
-            f.write(f"{entry} => {df[df.iloc[:, 0].str.contains(regex)].iloc[0,1]}\n")
-    f.close()
+            with open("result.txt", mode="a", encoding="utf-8") as f:
+                f.write(f"{entry} => {df[df.iloc[:, 0].str.contains(regex)].iloc[0,1]}\n")
     print("Finish !")
 
 
