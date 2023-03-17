@@ -1,10 +1,12 @@
+#!/usr/bin/python3.6
+# coding:utf-8
 import random
 import time
 import requests
 import pandas as pd
 
 def load_latest_report(sym):
-    url = '	https://mops.twse.com.tw/mops/web/ajax_t164sb03'
+    url = 'https://mops.twse.com.tw/mops/web/ajax_t164sb03'
     payload = {
         'encodeURIComponent': '1',
         'step': '2',
@@ -33,6 +35,7 @@ def do_all():
             '流動資產合計': '流動資產合計',
             '負債總額': '負債總[計額]',
         }
+        print("%d\n",interested.items('股本合計'))
         with open("result.txt", mode="a", encoding="utf-8") as f:
             f.write(f"=== {stock} ===\n")
         for entry, regex in interested.items():
