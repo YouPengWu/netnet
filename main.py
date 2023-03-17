@@ -35,7 +35,6 @@ def do_all():
             '流動資產合計': '流動資產合計',
             '負債總額': '負債總[計額]',
         }
-        print("%d\n",interested.items('股本合計'))
         with open("result.txt", mode="a", encoding="utf-8") as f:
             f.write(f"=== {stock} ===\n")
         for entry, regex in interested.items():
