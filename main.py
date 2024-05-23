@@ -1,9 +1,10 @@
-#!/usr/bin/python3.6
+#!/usr/bin/python3.10
 # coding:utf-8
 import random
 import time
 import requests
 import pandas as pd
+#第一季季報5/15前，第二季季報8/14前，第三季季報11/14前，年度財報次年3/31前。
 
 def load_latest_report(sym):
     url = 'https://mops.twse.com.tw/mops/web/ajax_t164sb03'
@@ -32,14 +33,15 @@ def do_all():
         df = load_latest_report(stock)[1]
         interested = {
             '股本合計': '股本合計',
-            '流動資產合計': '流動資產合計',
-            '負債總額': '負債總[計額]',
+            #'流動資產合計': '流動資產合計',
+            #'負債總額': '負債總[計額]',
         }
-        with open("result.txt", mode="a", encoding="utf-8") as f:
-            f.write(f"=== {stock} ===\n")
+        #with open("result.txt", mode="a", encoding="utf-8") as f:
+            #f.write(f"=== {stock} ===\n")
         for entry, regex in interested.items():
             with open("result.txt", mode="a", encoding="utf-8") as f:
-                f.write(f"{entry} => {df[df.iloc[:, 0].str.contains(regex)].iloc[0,1]}\n")
+                #f.write(f"{entry} => {df[df.iloc[:, 0].str.contains(regex)].iloc[0,1]}\n")
+                f.write(f"{df[df.iloc[:, 0].str.contains(regex)].iloc[0,1]}\n")
     print("Finish !")
 
 
