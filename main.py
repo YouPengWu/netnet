@@ -31,16 +31,23 @@ def read_stocks():
 def do_all():
     for stock in read_stocks():
         df = load_latest_report(stock)[1]
-        interested = {
+        capital_stock = {
             '股本合計': '股本合計',
-            #'流動資產合計': '流動資產合計',
-            #'負債總額': '負債總[計額]',
         }
-        #with open("result.txt", mode="a", encoding="utf-8") as f:
-            #f.write(f"=== {stock} ===\n")
-        for entry, regex in interested.items():
-            with open("result.txt", mode="a", encoding="utf-8") as f:
-                #f.write(f"{entry} => {df[df.iloc[:, 0].str.contains(regex)].iloc[0,1]}\n")
+        for entry, regex in capital_stock.items():
+            with open("capital_stock.txt", mode="a", encoding="utf-8") as f:
+                f.write(f"{df[df.iloc[:, 0].str.contains(regex)].iloc[0,1]}\n")
+        current_assets = {
+            '流動資產合計': '流動資產合計',
+        }
+        for entry, regex in current_assets.items():
+            with open("current_assets.txt", mode="a", encoding="utf-8") as f:
+                f.write(f"{df[df.iloc[:, 0].str.contains(regex)].iloc[0,1]}\n")
+        total_liabilities = {
+            '負債總額': '負債總[計額]',
+        }
+        for entry, regex in total_liabilities.items():
+            with open("total_liabilities.txt", mode="a", encoding="utf-8") as f:
                 f.write(f"{df[df.iloc[:, 0].str.contains(regex)].iloc[0,1]}\n")
     print("Finish !")
 
