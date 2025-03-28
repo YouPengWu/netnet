@@ -7,7 +7,7 @@ import pandas as pd
 #第一季季報5/15前，第二季季報8/14前，第三季季報11/14前，年度財報次年3/31前。
 
 def load_latest_report(sym):
-    url = 'https://mops.twse.com.tw/mops/web/ajax_t164sb03'
+    url = 'https://mopsov.twse.com.tw/mops/web/ajax_t164sb03'
     payload = {
         'encodeURIComponent': '1',
         'step': '2',
